@@ -959,6 +959,9 @@ public class Generator {
             else {
                 k_prime_i = k_max;
             }
+            if (k_prime_i <= 0) {
+                return maxPossibleObjective + (n + 1) - i;
+            }
             // 7 : if N (θ) ≥ i then (θ, π i , κ i , o i ) ← R θ [i]
             RunFastDownward r_θ_i = new RunFastDownward("", -1, 0, "", 0.0, dataMgr.getOriginalDomainPath());
             if(N(θ) >= i) {               
@@ -1075,6 +1078,9 @@ public class Generator {
             }
             else {
                 k_prime_i = k_max;
+            }
+            if (k_prime_i <= 0) {
+                return maxPossibleObjective + (n + 1) - i;
             }
             // 7 : if N (θ) ≥ i then (θ, π i , κ i , o i ) ← R θ [i]
             RunFastDownward r_θ_i = new RunFastDownward("", -1, 0, "", 0.0, dataMgr.getOriginalDomainPath());
