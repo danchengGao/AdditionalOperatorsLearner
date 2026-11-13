@@ -66,7 +66,7 @@ public class RunFastDownward {
         Pattern pattern2 = Pattern.compile("(\\bTotal time: \\b)([0-9]+[\\.]*[0-9]*[e]*[-]*[0-9]*)([s])");
         
         String s = null;
-        String command = "./test-paramILS.sh " + domainName + " " + problemName + " " + (int) timeout + "s";
+        String command = "./run-fast-downward.sh " + domainName + " " + problemName + " " + (int) timeout + "s";
         try {
             Process p = Runtime.getRuntime().exec(command);
             p.waitFor((int) Math.ceil(timeout), TimeUnit.SECONDS);
