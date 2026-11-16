@@ -46,23 +46,23 @@ public final class LearnerConfig {
                 i++;
             }
             else if(arg.equals("--r")) {
-                R = parseInt(value(args, i, arg), arg);
+                R = requireAtLeast(parseInt(value(args, i, arg), arg), 0, arg);
                 i++;
             }
             else if(arg.equals("--difference")) {
-                DIFFERENCE = parseDouble(value(args, i, arg), arg);
+                DIFFERENCE = requireAtLeast(parseDouble(value(args, i, arg), arg), 0, arg);
                 i++;
             }
             else if(arg.equals("--max-macro")) {
-                MAX_MACRO = parseInt(value(args, i, arg), arg);
+                MAX_MACRO = requireAtLeast(parseInt(value(args, i, arg), arg), 1, arg);
                 i++;
             }
             else if(arg.equals("--nbh-size")) {
-                NBH_SIZE = parseInt(value(args, i, arg), arg);
+                NBH_SIZE = requireAtLeast(parseInt(value(args, i, arg), arg), 1, arg);
                 i++;
             }
             else if(arg.equals("--time-limit")) {
-                TIME_LIMIT = parseInt(value(args, i, arg), arg);
+                TIME_LIMIT = requireAtLeast(parseInt(value(args, i, arg), arg), 1, arg);
                 i++;
             }
             else if(arg.equals("--planner")) {
@@ -112,6 +112,20 @@ public final class LearnerConfig {
         catch(NumberFormatException e) {
             throw new IllegalArgumentException(option + " needs a number: " + text);
         }
+    }
+
+    private static int requireAtLeast(int value, int minimum, String option) {
+        if(value < minimum) {
+            throw new IllegalArgumentException(option + " must be at least " + minimum + ": " + value);
+        }
+        return value;
+    }
+
+    private static double requireAtLeast(double value, double minimum, String option) {
+        if(!Double.isFinite(value) || value < minimum) {
+            throw new IllegalArgumentException(option + " must be at least " + (int) minimum + ": " + value);
+        }
+        return value;
     }
 
     public static boolean everywhereRequiresTraditional() {
