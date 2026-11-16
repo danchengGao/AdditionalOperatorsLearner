@@ -1,6 +1,6 @@
 #!/bin/bash
 # Usage: ./run-fast-downward.sh <domain> <problem> <timeout> [config]
-# The learner calls this with three arguments, which selects ff-lazy.
+# The learner passes --planner as config. Without config, ff-lazy is used.
 # config is one of: ff-lazy, ff-eager, cea, lmcount, mercury
 
 Domain=$1
